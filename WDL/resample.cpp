@@ -6,6 +6,7 @@
 #include <math.h>
 
 #include "denormal.h"
+#include <algorithm>
 
 #ifndef PI
 #define PI 3.1415926535897932384626433832795
@@ -359,7 +360,7 @@ int WDL_Resampler::ResampleOut(WDL_ResampleSample *out, int nsamples_in, int nsa
     }
   }
 
-  m_samples_in_rsinbuf += min(nsamples_in,m_last_requested); // prevent the user from corrupting the internal state
+  m_samples_in_rsinbuf += std::min(nsamples_in,m_last_requested); // prevent the user from corrupting the internal state
 
 
   int rsinbuf_availtemp = m_samples_in_rsinbuf;
